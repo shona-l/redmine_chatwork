@@ -1,7 +1,8 @@
 require 'httpclient'
 
-class ChatWorkListener < Redmine::Hook::Listener
-  def controller_issues_new_after_save(context={})
+module RedmineChatwork
+class Listener < Redmine::Hook::Listener
+  def redmine_chatwork_issues_new_after_save(context={})
     issue = context[:issue]
     room = room_for_project issue.project
     disabled = check_disabled issue.project
@@ -25,7 +26,7 @@ class ChatWorkListener < Redmine::Hook::Listener
     speak room, header, body
   end
 
-  def controller_issues_edit_after_save(context={})
+  def redmine_chatwork_issues_edit_after_save(context={})
     issue = context[:issue]
     journal = context[:journal]
     room = room_for_project issue.project
@@ -103,6 +104,8 @@ class ChatWorkListener < Redmine::Hook::Listener
 
     if body
       result += body
+    else
+      result += 'Message Empty'
     end
 
     if footer
@@ -137,6 +140,7 @@ class ChatWorkListener < Redmine::Hook::Listener
   end
 
   def check_disabled(proj)
+    return false
     return nil if proj.blank?
 
     cf = ProjectCustomField.find_by_name("ChatWork Disabled")
@@ -217,4 +221,5 @@ class ChatWorkListener < Redmine::Hook::Listener
     result = "\n#{title}: #{value}"
     result
   end
+end
 end

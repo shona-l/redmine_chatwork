@@ -6,8 +6,9 @@ This plugin notifies updates of Redmine tickets and wiki to your [ChatWork](http
 
 ## Compatible with:
 
-* Redmine 3.3.x
-* Redmine 3.2.x
+* Redmine 5.1.3 (checked on bitnami redmine)
+* ~~Redmine 3.3.x~~ (not checked)
+* ~~Redmine 3.2.x~~ (not checked)
 
 ## Installation
 
@@ -42,6 +43,11 @@ You can override the room or turn off notifications by using project custom fiel
 ![](https://cloud.githubusercontent.com/assets/6197292/22985404/aa72fb38-f3eb-11e6-8520-f855fa02c405.png)
 
 ## Changelog
+
+### v0.3.0
+
+* Applyed To Redmine5
+  * Thanks to [sciyoshi/redmine-slack](https://github.com/sciyoshi/redmine-slack).
 
 ### v0.2.0
 
